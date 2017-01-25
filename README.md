@@ -1,13 +1,12 @@
-MeteorJs ModalBoxes
-===================
+# MeteorJs ModalBoxes
+
 Meteor modal boxes with blaze
 
 **How to use**
-1. Add html and css template (for example)
 
+## Add html and css template (for example)
 ```html
 // imports/ui/componets/modal-boxes/modal-boxes.html
-
 <template name="Modal_boxes">
     <div class="modal in {{className}}">
         <div class="modal-backdrop" data-modal="close"></div>
@@ -18,7 +17,7 @@ Meteor modal boxes with blaze
 </template>
 ```
 ```scss
-// imports/ui/componets/modal-boxes/modal-boxes.scss
+@-moz-keyframes fadeIn{0%{opacity:0}100%{opacity:1}}@-webkit-keyframes fadeIn{0%{opacity:0}100%{opacity:1}}@-o-keyframes fadeIn{0%{opacity:0}100%{opacity:1}}@keyframes fadeIn{0%{opacity:0}100%{opacity:1}}@-moz-keyframes fadeOut{0%{opacity:1}100%{opacity:0}}@-webkit-keyframes fadeOut{0%{opacity:1}100%{opacity:0}}@-o-keyframes fadeOut{0%{opacity:1}100%{opacity:0}}@keyframes fadeOut{0%{opacity:1}100%{opacity:0}}
 .modal {
     position: fixed;
     top: 0;
@@ -64,30 +63,20 @@ Meteor modal boxes with blaze
     }
 }
 ```
-
-2. Init ModalBoxes
-
+## Init ModalBoxes
 ```js
 // imports/startup/client/modal-boxes-configuration.js
 import 'imports/ui/componets/modal-boxes/modal-boxes.html';
-import 'imports/ui/componets/modal-boxes/modal-boxes.scss';
 ModalBoxes.config({template: 'Modal_boxes'});
-
 // and import this file to /client/main.js
 ```
-3. Open your modal
-
+## Use your modal
 ```js
 ModalBoxes.open({
     modal: 'your_template_name',
-    className: 'modal-project-edit',
-    
-    your_data_key: your_data
+    className: 'modal-project-edit', 
+    your_data_key: data
 });
-```
-    
-4. Close modal
 
-```js
 ModalBoxes.close();
 ```
