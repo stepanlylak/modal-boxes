@@ -33,7 +33,7 @@ const _ModalBoxesInit = function() {
         if(!options.modal) return false;
 
         this.close();
-        this.modal = Blaze.renderWithData(Template.Et_modal,options, document.body);
+        this.modal = Blaze.renderWithData(Template[_ModalBoxesConfig.template],options, document.body);
         this.modal.firstNode().addEventListener(animationEnd, function() {
             $(this).removeClass('in');
         });
