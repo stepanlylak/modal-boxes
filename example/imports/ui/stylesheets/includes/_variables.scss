@@ -1,0 +1,15 @@
+$grid-columns: 12 !default;
+$grid-max-width: 1200px !default;
+$grid-gutter-width: 16px !default;
+
+// Responses
+$rzs:vpn,hpn,apn,vpd,hpd,apd,mbl,ltp,dtp,fhd;
+$zmn:0,480,0,768,896,768,0,1025,1200,1920;
+$zmx:479,767,767,895,1024,1024,1024,1199,1919,9999;
+
+$fw-roboto-thin: 100;
+$fw-roboto-light: 300;
+$fw-roboto-regular: 400;
+$fw-roboto-medium: 500;
+$fw-roboto-bold: 700;
+$fw-roboto-black: 900;

@@ -19,12 +19,34 @@ const animationEnd = function whichAnimationEvent(){
     }
 }();
 
+const hasClass = function(el, className) {
+  if (el.classList)
+    return el.classList.contains(className)
+  else
+    return !!el.className.match(new RegExp('(\\s|^)' + className + '(\\s|$)'))
+};
+
+const addClass = function(el, className) {
+  if (el.classList)
+    el.classList.add(className)
+  else if (!hasClass(el, className)) el.className += " " + className
+};
+
+const removeClass = function(el, className) {
+  if (el.classList)
+    el.classList.remove(className)
+  else if (hasClass(el, className)) {
+    var reg = new RegExp('(\\s|^)' + className + '(\\s|$)')
+    el.className=el.className.replace(reg, ' ')
+  }
+};
+
 let _ModalBoxesConfig = {};
 
 const _ModalBoxesInit = function() {
 
     Template[_ModalBoxesConfig.template].events({
-        'click [data-modal="close"]'() {
+        'click [data-modal-boxes="close"]'() {
             ModalBoxes.close();
         }
     });
@@ -35,17 +57,17 @@ const _ModalBoxesInit = function() {
         this.close();
         this.modal = Blaze.renderWithData(Template[_ModalBoxesConfig.template],options, document.body);
         this.modal.firstNode().addEventListener(animationEnd, function() {
-            $(this).removeClass('in');
+            removeClass(this, 'in');
         });
     };
 
     ModalBoxes.close = function() {
         if(!this.modal) return false;
-
-        $(this.modal.firstNode()).addClass('out');
-        this.modal.firstNode().addEventListener(animationEnd, () => {
-            Blaze.remove(this.modal);
-            this.modal = null;
+        const modal = this.modal, $modal = modal.firstNode();
+        this.modal = null;
+        addClass($modal,'out');
+        $modal.addEventListener(animationEnd, () => {
+            Blaze.remove(modal);
         });
     };
 };

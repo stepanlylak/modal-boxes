@@ -1,0 +1,62 @@
+@include keyframes(fadeIn) {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@include keyframes(fadeOut) {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+.modal-box {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    overflow: auto;
+    padding: 50px 20px;
+    .modal-box-backdrop {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: rgba(0,0,0,0.5);
+    }
+    .modal-box-body {
+        position: relative;
+        background-color: #fff;
+        width: 100%;
+        max-width: 960px;
+        margin: 0 auto;
+        box-shadow: 0 8px 10px 1px rgba(0,0,0,0.14), 0 3px 14px 2px rgba(0,0,0,0.12), 0 5px 5px -3px rgba(0,0,0,0.3);
+        border-radius: 2px;
+        .modal-box-header {
+            padding: 24px 24px 20px 24px;
+            + .modal-content {
+                padding-top: 0;
+            }
+        }
+        .modal-box-content {
+            padding: 24px;
+        }
+        .modal-box-footer {
+            padding: 8px;
+        }
+    }
+    &.in {
+        animation: fadeIn 0.2s linear;
+    }
+    &.out {
+        animation: fadeOut 0.2s linear;
+    }
+}

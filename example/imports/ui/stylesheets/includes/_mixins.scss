@@ -1,0 +1,67 @@
+@mixin response($rz) {
+    @for $idx from 1 through length($rzs) {
+        @if nth($rzs, $idx) == $rz {
+            @if nth($zmn, $idx) == 0 {
+                @media (max-width: #{nth($zmx, $idx)}px) { @content; }
+            }
+            @else if nth($zmx, $idx) == 9999 {
+                @media (min-width: #{nth($zmn, $idx)}px) { @content; }
+            }
+            @else {
+                @media (min-width: #{nth($zmn, $idx)}px) and (max-width: #{nth($zmx, $idx)}px) { @content; }
+            }
+        }
+    }
+}
+
+@mixin response-from($rz) {
+    @for $idx from 1 through length($rzs) {
+        @if nth($rzs, $idx) == $rz {
+            @if nth($zmn, $idx) != 0 {
+                @media (min-width: #{nth($zmn, $idx)}px) { @content; }
+            }
+            @else {
+                @content;
+            }
+        }
+    }
+}
+
+@mixin response-to($rz) {
+    @for $idx from 1 through length($rzs) {
+        @if nth($rzs, $idx) == $rz {
+            @if nth($zmx, $idx) != 9999 {
+                @media (max-width: #{nth($zmx, $idx)}px) { @content; }
+            }
+        }
+    }
+}
+
+@mixin print() {
+    @media print { @content; }
+}
+
+//// Transition
+@mixin transition($transition...) {
+  -webkit-transition: $transition;
+     -moz-transition: $transition;
+      -ms-transition: $transition;
+       -o-transition: $transition;
+          transition: $transition;
+}
+
+// Disable select element
+@mixin disable-select() {
+    -webkit-touch-callout:none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+@mixin placeholder {
+    &::-webkit-input-placeholder {@content}
+    &:-moz-placeholder           {@content}
+    &::-moz-placeholder          {@content}
+    &:-ms-input-placeholder      {@content}  
+}

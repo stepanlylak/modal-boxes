@@ -1,0 +1,124 @@
+$btn-colors: (
+    default: ($clr-ui-base, $clr-ui-base-hover),
+    btn-green: ($clr-green, $clr-green-600),
+    btn-orange: ($clr-orange, $clr-orange-600),
+    btn-yellow: ($clr-yellow-600, $clr-yellow-700),
+    btn-red: ($clr-red, $clr-red-600)
+);
+
+.btn {
+    border: none;
+    border-radius: 2px;
+    display: inline-block;
+    min-height: 36px;
+    line-height: 16px;
+    outline: 0;
+    padding: 10px 16px;
+    min-width: 88px;
+    text-transform: uppercase;
+    vertical-align: middle;
+    -webkit-tap-highlight-color: transparent;
+    text-decoration: none;
+    background-color: transparent;
+    text-align: center;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    box-sizing: border-box;
+    @include transition(all .2s ease 0s);
+    @each $btn-color, $v in $btn-colors {
+        @if $btn-color == 'default' {
+            &:not(.btn-raised) {
+                color: nth($v, 1);
+                &:hover {
+                    color: nth($v, 2);
+                    background-color: rgba(nth($v, 1), .12);
+                }
+                &:focus, &:active {
+                    color: nth($v, 2);
+                    background-color: rgba(nth($v, 1), .3);
+                }
+            }
+        } @else {
+            &.#{$btn-color}:not(.btn-raised) {
+                color: nth($v, 1);
+                &:hover {
+                    color: nth($v, 2);
+                    background-color: rgba(nth($v, 1), .12);
+                }
+                &:focus, &:active {
+                    background-color: rgba(nth($v, 1), .3);
+                }
+            }
+        }
+    }
+    &.btn-raised {
+        @each $btn-color, $v in $btn-colors {
+            @if $btn-color == 'default' {
+                color: #fff;
+                background-color: nth($v, 1);
+                &:hover, &:focus {
+                    background-color: nth($v, 2);
+                    box-shadow: rgba(0, 0, 0, 0.12) 0px 2px 2px;
+                }
+                &:active {
+                    background-color: nth($v, 2);
+                    box-shadow: 0 2px 6px 0 rgba(0,0,0,0.12);
+                }
+            } @else {
+                &.#{$btn-color} {
+                    background-color: nth($v, 1);
+                    &:hover {
+                        background-color: nth($v, 2);
+                    }
+                }
+            }
+        }
+    }
+    &.btn-icon {
+        padding: 0;
+        min-width: 36px;
+    }
+    &.btn-small {
+        min-height: 32px;
+        padding-top: 8px;
+        padding-bottom: 8px;
+        &.btn-icon {
+            width: 32px;
+        }
+    }
+    &.btn-large {
+        min-height: 46px;
+        padding-top: 15px;
+        padding-bottom: 15px;
+        &.btn-icon {
+            width: 46px;
+        }
+    }
+}
+
+.btn-set {
+    font-size: 0;
+    .btn {
+        margin-left: 8px;
+        &:first-child {
+            margin-left: 0;
+        }
+    }
+    &.btn-small-space {
+        .btn {
+            padding-left: 8px;
+            padding-right: 8px;
+            min-width: 64px;
+        }
+    }
+    &.btn-align-center {
+        text-align: center;
+    }
+    &.btn-align-right {
+        text-align: right;
+    }
+    &.btn-align-left {
+        text-align: left;
+    }
+}

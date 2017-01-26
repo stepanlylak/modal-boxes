@@ -1,0 +1,104 @@
+.container-fluid {
+    margin: 0 auto;
+    box-sizing: border-box;
+    padding-right: $grid-gutter-width;
+    padding-left: $grid-gutter-width;
+}
+
+.container {
+    @extend .container-fluid;
+    max-width: $grid-max-width;
+}
+
+.row {
+    box-sizing: border-box;
+    @include flexbox();
+    @include flex(0, 1, auto);
+    @include flex-direction(row);
+    @include flex-wrap(wrap);
+    margin-right: $grid-gutter-width/-2;
+    margin-left: $grid-gutter-width/-2;
+}
+
+[class*="col-"] {
+    box-sizing: border-box;
+    @include flex(0, 1, 100%);
+    padding-left:  $grid-gutter-width/2;
+    padding-right: $grid-gutter-width/2;
+}
+
+@for $idx from 1 through length($rzs) {
+    @for $cdx from 0 through $grid-columns {
+        @include response-from(nth($rzs, $idx)) {
+            @if $cdx != 0 {
+                .col-#{nth($rzs, $idx)}-#{$cdx} {
+                    @include flex-basis(percentage(($cdx / $grid-columns)));
+                    max-width: percentage(($cdx / $grid-columns));
+                }
+            }
+            .col-#{nth($rzs, $idx)}-offset-#{$cdx} {
+                margin-left: percentage(($cdx / $grid-columns));
+            }
+        }
+    }
+
+//Y axis https://www.w3.org/TR/css-flexbox-1/#align-items-property   
+    .items-#{nth($rzs, $idx)}-start    { @include align-items(flex-start); }
+    .items-#{nth($rzs, $idx)}-center   { @include align-items(center); }
+    .items-#{nth($rzs, $idx)}-end      { @include align-items(flex-end); }
+    .items-#{nth($rzs, $idx)}-baseline { @include align-items(baseline); }
+
+    .self-#{nth($rzs, $idx)}-start    { @include align-self(flex-start); }
+    .self-#{nth($rzs, $idx)}-center   { @include align-self(center); }
+    .self-#{nth($rzs, $idx)}-end      { @include align-self(flex-end); }
+    .self-#{nth($rzs, $idx)}-baseline { @include align-self(baseline); }
+
+    .self-#{nth($rzs, $idx)}-first { @include order(-1); }
+    .self-#{nth($rzs, $idx)}-last  { @include order(1); }
+
+//Y axis https://www.w3.org/TR/css-flexbox-1/#align-content-property
+    .content-#{nth($rzs, $idx)}-start   { @include align-content(flex-start); }
+    .content-#{nth($rzs, $idx)}-center  { @include align-content(center); }
+    .content-#{nth($rzs, $idx)}-end     { @include align-content(flex-end); }
+    .content-#{nth($rzs, $idx)}-between { @include align-content(space-between); }
+    .content-#{nth($rzs, $idx)}-around  { @include align-content(space-around); }
+
+//X axis https://www.w3.org/TR/css-flexbox-1/#justify-content-property
+    .justify-#{nth($rzs, $idx)}-start   { @include justify-content(flex-start); text-align: start; }
+    .justify-#{nth($rzs, $idx)}-center  { @include justify-content(center); text-align: center;}
+    .justify-#{nth($rzs, $idx)}-end     { @include justify-content(flex-end); text-align: end;}
+    .justify-#{nth($rzs, $idx)}-between { @include justify-content(space-between); }
+    .justify-#{nth($rzs, $idx)}-around  { @include justify-content(space-around); }
+
+//The flex-direction property specifies how flex items are placed in the flex container, by setting the direction of the flex container’s main axis.
+    .dir-#{nth($rzs, $idx)}-row {@include flex-direction(row);}
+    .dir-#{nth($rzs, $idx)}-row-reverse {@include flex-direction(row-reverse);}
+    .dir-#{nth($rzs, $idx)}-column  {@include flex-direction(column);}
+    .dir-#{nth($rzs, $idx)}-column-reverse  {@include flex-direction(column-reverse);}
+}
+
+
+// OLD WAY
+//$list:"";
+//@for $idx from 1 through length($rzs) {
+//    @for $cdx from 1 through $grid-columns {
+//        $ins:", ";
+//        @if $idx == 1 and $cdx == 1 {
+//            $ins:"";
+//        }
+//        $list: "#{$list}#{$ins}.col-#{nth($rzs, $idx)}-#{$cdx}";
+//    }
+//}
+//@for $idx from 1 through length($rzs) {
+//    $ins:", ";
+//    @if $idx == 1 {
+//        $ins:"";
+//    }
+//    $list: "#{$list}#{$ins}[class^='col-#{nth($rzs, $idx)}']";
+//}
+//#{$list} {
+//    box-sizing: border-box;
+//    @include flex(0, 0, auto);
+//    padding-left:  $grid-gutter-width/2;
+//    padding-right: $grid-gutter-width/2;
+//}
