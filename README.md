@@ -2,11 +2,10 @@
 
 Meteor modal boxes with blaze ([example](http://modalboxes.lylak.in.ua))
 
-# **How to use:**
-
 ```bash
 $ meteor add lylak:modal-boxes
 ```
+# **How to use:**
 
 ### Add html and css template (for example)
 ```html
