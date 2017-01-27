@@ -26,7 +26,7 @@ Meteor modal boxes with blaze ([example](http://modalboxes.lylak.in.ua))
 import { Template } from 'meteor/templating';
 import ModalBoxes from 'meteor/lylak:modal-boxes';
 import '../../ui/components/modal-boxes/modal-boxes.html';
-ModalBoxes.config({template: 'Modal_boxes'});
+ModalBoxes.config({template: 'Modal_boxes'}); // template for all modal boxes
 ```
 ```js
 // /client/main.js
