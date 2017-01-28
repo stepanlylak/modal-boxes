@@ -1,4 +1,4 @@
-@include keyframes(fadeIn) {
+@include keyframes(mb-backdrop-in) {
     0% {
         opacity: 0;
     }
@@ -7,12 +7,34 @@
     }
 }
 
-@include keyframes(fadeOut) {
+@include keyframes(mb-backdrop-out) {
     0% {
         opacity: 1;
     }
     100% {
         opacity: 0;
+    }
+}
+
+@include keyframes(mb-body-in) {
+    0% {
+        opacity: 0;
+        transform: translateY(30%);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@include keyframes(mb-body-out) {
+    0% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(30%);
     }
 }
 
@@ -54,9 +76,21 @@
         }
     }
     &.in {
-        animation: fadeIn 0.2s linear;
+        animation: mb-backdrop-in 0.3s linear;
+        .modal-box-backdrop {
+
+        }
+        .modal-box-body {
+            animation: mb-body-in 0.3s linear;
+        }
     }
     &.out {
-        animation: fadeOut 0.2s linear;
+        animation: mb-backdrop-out 0.3s linear;
+        .modal-box-backdrop {
+
+        }
+        .modal-box-body {
+            animation: mb-body-out 0.3s linear;
+        }
     }
 }

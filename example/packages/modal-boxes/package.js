@@ -1,6 +1,6 @@
 Package.describe({
   name: 'lylak:modal-boxes',
-  version: '0.0.4',
+  version: '1.0.0',
   summary: 'It is a modal boxes for meteor, with custom template and styles',
   git: 'https://github.com/StepaLylak/modal-boxes',
   documentation: 'README.md'

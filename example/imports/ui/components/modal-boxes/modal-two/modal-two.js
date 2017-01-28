@@ -8,9 +8,11 @@ Template.Modal_two.events({
         e.preventDefault();
         const modalTemplate = e.target.getAttribute("href").substr(1);
         ModalBoxes.open({
-            modal: modalTemplate,
+            template: modalTemplate,
             className: 'modals-group',
-            myData: 'myData for ' + modalTemplate
+            data: {
+                myData: 'myData for ' + modalTemplate
+            }
         });
     }
 });

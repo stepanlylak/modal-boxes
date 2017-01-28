@@ -1,17 +1,21 @@
 import { Template } from 'meteor/templating';
 import ModalBoxes from 'meteor/lylak:modal-boxes';
 
-import './modal-three.html';
+import './hello.html';
 
-Template.Modal_three.events({
-    'click a.btn': function (e) {
+Template.hello.events({
+    'click a.btn[href^="#"]': function (e) {
         e.preventDefault();
         const modalTemplate = e.target.getAttribute("href").substr(1);
         ModalBoxes.open({
             template: modalTemplate,
             className: 'modals-group',
+            animation: {
+                enter: 'in',
+                leave: 'out',
+            },
             data: {
-                myData: 'myData for ' + modalTemplate
+                myData: 'myData ' + modalTemplate
             }
         });
     }

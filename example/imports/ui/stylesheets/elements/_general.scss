@@ -2,6 +2,14 @@ body {
     font-family: 'Roboto', sans-serif;
     line-height: 1.5;
     padding: 30px;
+    .container {
+        text-align: center;
+        h1 {
+            margin: 0.67em 0;
+            font-weight: 300;
+            color: #4d5558;
+        }    
+    }
 }
 
 .clearfix {
