@@ -5,7 +5,7 @@ Meteor modal boxes with blaze ([example](http://modalboxes.lylak.in.ua))
 ```bash
 $ meteor add lylak:modal-boxes
 ```
-[GitHub](https://github.com/StepaLylak/modal-boxes), [AtmosphereJs](https://atmospherejs.com/lylak/modal-boxes)
+[GitHub](https://github.com/stepanlylak/modal-boxes), [AtmosphereJs](https://atmospherejs.com/lylak/modal-boxes)
 # **How to use:**
 
 ### Add html and css template (for example)
