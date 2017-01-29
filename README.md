@@ -1,5 +1,7 @@
 # MeteorJs ModalBoxes
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/82f2eac0e1ae4f7698830ec0f0f8fa02)](https://www.codacy.com/app/stepanlylak/modal-boxes?utm_source=github.com&utm_medium=referral&utm_content=stepanlylak/modal-boxes&utm_campaign=badger)
+
 Meteor modal boxes with blaze ([example](http://modalboxes.lylak.in.ua))
 
 ```bash
