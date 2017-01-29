@@ -6,11 +6,11 @@ import '../../ui/components/modal-boxes/modal-boxes.html';
 
 ModalBoxes.config({
     template: 'Modal_boxes',
-    animation: {
-        default: true,
+    // animation: {
+        // default: true,
         // classes: {
         //     enter: 'fadeIn',
         //     leave: 'fadeOut'
         // }
-    }
+    // }
 });

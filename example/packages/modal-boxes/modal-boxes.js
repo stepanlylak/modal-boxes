@@ -39,7 +39,7 @@ const removeClass = function(el, className) {
     if (el.classList) {
         el.classList.remove(className)
     } else if (hasClass(el, className)) {
-        var reg = new RegExp('(\\s|^)' + className + '(\\s|$)')
+        const reg = new RegExp('(\\s|^)' + className + '(\\s|$)')
         el.className=el.className.replace(reg, ' ')
     }
     return el;
@@ -57,14 +57,15 @@ const _ModalBoxesInit = function() {
     });
 
     ModalBoxes.mb = {};
-
-    ModalBoxes.animation = _.defaults(_ModalBoxesConfig.animation, {
-        default: true,
-        classes: {
-            enter: 'in',
-            leave: 'out'
-        }
-    });
+    if(_ModalBoxesConfig.animation) {
+        ModalBoxes.animation = _.defaults(_ModalBoxesConfig.animation, {
+            default: true,
+            classes: {
+                enter: 'in',
+                leave: 'out'
+            }
+        });
+    }
 
     ModalBoxes.open = function(options) {
         if(!options && !options.modal) return false;
@@ -80,7 +81,7 @@ const _ModalBoxesInit = function() {
                 this.mb.anim = this.animation.classes;
             }
         } else {
-            if(options.animation !== false && this.animation.default) {
+            if(options.animation !== false &&  this.animation && this.animation.default) {
                 this.mb.anim = this.animation.classes;
             }
         }
