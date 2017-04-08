@@ -12,6 +12,9 @@ Template.Modal_two.events({
             className: 'modals-group',
             data: {
                 myData: 'myData for ' + modalTemplate
+            },
+            onClose(data) {
+                // alert('modal was closed with data:'+data);
             }
         });
     }
