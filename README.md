@@ -50,6 +50,7 @@ import '../imports/startup/client/modal-boxes-configuration.js';
 ...
 ```
 ### Use your modal
+#### Open:
 ```js
 ModalBoxes.open({
     template: 'your modal body template',
@@ -60,8 +61,13 @@ ModalBoxes.open({
     },
     data: {
         myData: 'myData'
+    },
+    onClose(data) { // on close event
+      alert('modal was closed with data:'+data);
     }
 });
-
-ModalBoxes.close();
+```
+#### Close the opened ModalBoxes
+```js
+ModalBoxes.close({myOnCloseData: 'myOnCloseData'}); // data is optional
 ```
