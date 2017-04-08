@@ -1,5 +1,7 @@
 # MeteorJs ModalBoxes
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/82f2eac0e1ae4f7698830ec0f0f8fa02)](https://www.codacy.com/app/stepanlylak/modal-boxes?utm_source=github.com&utm_medium=referral&utm_content=stepanlylak/modal-boxes&utm_campaign=badger)
+
 Meteor modal boxes with blaze ([example](http://modalboxes.lylak.in.ua))
 
 ```bash
@@ -48,6 +50,7 @@ import '../imports/startup/client/modal-boxes-configuration.js';
 ...
 ```
 ### Use your modal
+#### Open:
 ```js
 ModalBoxes.open({
     template: 'your modal body template',
@@ -58,8 +61,13 @@ ModalBoxes.open({
     },
     data: {
         myData: 'myData'
+    },
+    onClose(data) { // on close event
+      alert('modal was closed with data:'+data);
     }
 });
-
-ModalBoxes.close();
+```
+#### Close the opened ModalBoxes
+```js
+ModalBoxes.close({myOnCloseData: 'myOnCloseData'}); // data is optional
 ```

@@ -20,27 +20,28 @@ const animationEnd = function whichAnimationEvent() {
 }();
 
 const hasClass = function(el, className) {
-  if (el.classList)
-    return el.classList.contains(className)
-  else
-    return !!el.className.match(new RegExp('(\\s|^)' + className + '(\\s|$)'))
+  if (el.classList) {
+    return el.classList.contains(className);
+  } else {
+    return !!el.className.match(new RegExp('(\\s|^)' + className + '(\\s|$)'));
+  }
 };
 
 const addClass = function(el, className) {
     if (el.classList) {
-        el.classList.add(className)
+        el.classList.add(className);
     } else if (!hasClass(el, className)) {
-        el.className += " " + className
+        el.className += ' ' + className;
     }
     return el;
 };
 
 const removeClass = function(el, className) {
     if (el.classList) {
-        el.classList.remove(className)
+        el.classList.remove(className);
     } else if (hasClass(el, className)) {
-        const reg = new RegExp('(\\s|^)' + className + '(\\s|$)')
-        el.className=el.className.replace(reg, ' ')
+        const reg = new RegExp('(\\s|^)' + className + '(\\s|$)');
+        el.className=el.className.replace(reg, ' ');
     }
     return el;
 };
@@ -75,7 +76,7 @@ const _ModalBoxesInit = function() {
                 this.mb.anim = {
                     enter: options.animation.enter,
                     leave: options.animation.leave
-                }
+                };
             }
             if(options.animation === true) {
                 this.mb.anim = this.animation.classes;
@@ -84,6 +85,10 @@ const _ModalBoxesInit = function() {
             if(options.animation !== false &&  this.animation && this.animation.default) {
                 this.mb.anim = this.animation.classes;
             }
+        }
+        
+        if(options.onClose && _.isFunction(options.onClose)) {
+            this.mb.onClose = options.onClose;
         }
 
         this.mb.data = _.extend({className: options.className, animation: this.mb.anim, template: options.template}, options.data);
@@ -101,9 +106,12 @@ const _ModalBoxesInit = function() {
         }
     };
 
-    ModalBoxes.close = function() {
+    ModalBoxes.close = function(data) {
         if(!this.mb.view) return false;
         const mb = this.mb, $view = mb.view.firstNode();
+        if(mb.onClose && _.isFunction(mb.onClose)) {
+            mb.onClose(data);
+        }
         this.mb = {};
         if(mb.anim && mb.anim.leave) {
             addClass($view, mb.anim.leave).addEventListener(animationEnd, () => {
