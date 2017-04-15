@@ -86,7 +86,7 @@ const _ModalBoxesInit = function() {
                 this.mb.anim = this.animation.classes;
             }
         }
-        
+
         if(options.onClose && _.isFunction(options.onClose)) {
             this.mb.onClose = options.onClose;
         }
